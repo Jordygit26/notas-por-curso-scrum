@@ -1,0 +1,3 @@
+// variables globales
+let notas = [];
+
