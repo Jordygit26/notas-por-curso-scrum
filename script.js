@@ -1,71 +1,98 @@
-// --- CONFIGURACIÓN Y SELECTORES ---
+// --- CONFIGURACIÓN ---
 const d = document;
-const notaForm = d.getElementById('nota-form');
-const listaNotas = d.getElementById('lista-notas');
-const DB_NAME = 'notas_cursos_db';
+const DB_NAME = 'mis_notas_cursos';
 
-// --- FUNCIONES DE LOCALSTORAGE ---
+// --- SELECTORES ---
+const form = d.getElementById('form-notas');
+const inputCurso = d.getElementById('curso');
+const inputNota = d.getElementById('nota');
+const tablaCuerpo = d.getElementById('lista-notas');
+const promedioSpan = d.getElementById('promedio-valor');
+const msgSuccess = d.getElementById('msg-success');
+const msgError = d.getElementById('msg-error');
 
-// Obtener notas (siempre devuelve un array)
+// --- FUNCIONES LOCALSTORAGE ---
+
 const obtenerNotas = () => {
     const datos = localStorage.getItem(DB_NAME);
     return datos ? JSON.parse(datos) : [];
 };
 
-// Guardar array completo
 const guardarNotas = (notas) => {
     localStorage.setItem(DB_NAME, JSON.stringify(notas));
 };
 
-// --- LÓGICA DE LA APLICACIÓN ---
+// --- LÓGICA DE NEGOCIO ---
 
-// Renderizar las notas en el HTML
-const renderizarNotas = () => {
-    const notas = obtenerNotas();
-    listaNotas.innerHTML = ''; // Limpiar contenedor
-
-    notas.forEach(nota => {
-        const notaDiv = d.createElement('div');
-        notaDiv.className = 'nota-card';
-        notaDiv.innerHTML = `
-            <h3>${nota.curso}</h3>
-            <p>${nota.contenido}</p>
-            <small>${nota.fecha}</small>
-            <button onclick="eliminarNota(${nota.id})" class="btn-eliminar">Eliminar</button>
-        `;
-        listaNotas.appendChild(notaDiv);
-    });
+const calcularPromedio = (notas) => {
+    if (notas.length === 0) return "0.0";
+    const suma = notas.reduce((acc, n) => acc + parseFloat(n.valor), 0);
+    return (suma / notas.length).toFixed(1);
 };
 
-// Agregar una nueva nota
-notaForm.addEventListener('submit', (e) => {
+const mostrarMensaje = (tipo) => {
+    const alerta = tipo === 'exito' ? msgSuccess : msgError;
+    alerta.classList.remove('oculto');
+    setTimeout(() => {
+        alerta.classList.add('oculto');
+    }, 3000);
+};
+
+const renderizarTabla = () => {
+    const notas = obtenerNotas();
+    tablaCuerpo.innerHTML = '';
+
+    notas.forEach((item) => {
+        const tr = d.createElement('tr');
+        tr.innerHTML = `
+            <td>${item.curso}</td>
+            <td>${item.valor}</td>
+            <td>
+                <button class="btn-eliminar" onclick="eliminarNota(${item.id})">Eliminar</button>
+            </td>
+        `;
+        tablaCuerpo.appendChild(tr);
+    });
+
+    promedioSpan.textContent = calcularPromedio(notas);
+};
+
+// --- EVENTOS ---
+
+form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const curso = d.getElementById('curso').value;
-    const contenido = d.getElementById('contenido').value;
+    const curso = inputCurso.value.trim();
+    const valor = inputNota.value;
+
+    // Validación básica
+    if (curso === '' || valor === '' || valor < 0 || valor > 20) {
+        mostrarMensaje('error');
+        return;
+    }
 
     const nuevaNota = {
         id: Date.now(),
-        curso,
-        contenido,
-        fecha: new Date().toLocaleString()
+        curso: curso,
+        valor: valor
     };
 
     const notas = obtenerNotas();
     notas.push(nuevaNota);
     
     guardarNotas(notas);
-    renderizarNotas();
-    notaForm.reset(); // Limpiar formulario
+    renderizarTabla();
+    form.reset();
+    mostrarMensaje('exito');
 });
 
-// Eliminar nota por ID
+// Eliminar nota (global para el onclick del botón)
 window.eliminarNota = (id) => {
     let notas = obtenerNotas();
     notas = notas.filter(n => n.id !== id);
     guardarNotas(notas);
-    renderizarNotas();
+    renderizarTabla();
 };
 
-// Cargar notas al iniciar la app
-d.addEventListener('DOMContentLoaded', renderizarNotas);
+// Cargar datos al abrir la página
+d.addEventListener('DOMContentLoaded', renderizarTabla);
