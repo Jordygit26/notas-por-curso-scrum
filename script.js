@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // =====================
 // las validaciones y mesnajes
 // =====================
@@ -31,7 +30,8 @@ function mostrarMensaje(texto, esError = false) {
         msgError.classList.add('oculto');
     }, 3000);
 }
-=======
+
+
 const formularioNotas = document.getElementById('form-notas');
 const inputCurso = document.getElementById('curso');
 const inputNota = document.getElementById('nota');
@@ -101,4 +101,4 @@ function limpiarFormulario() {
     formularioNotas.reset();
     inputCurso.focus();
 }
->>>>>>> dev
+
