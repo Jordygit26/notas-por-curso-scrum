@@ -26,4 +26,5 @@ function eliminarNotaPorIndice(indice) {
     guardarNotas(notas);
     return notas;
 }
-ea
+
+
