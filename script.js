@@ -1,6 +1,20 @@
 // =====================
-feature/promedio-jordygit26
-// UI / RENDER
+// la interaccion con el DOM(Frank)
+// =====================
+const formularioNotas = document.getElementById('form-notas');
+const inputCurso = document.getElementById('curso');
+const inputNota = document.getElementById('nota');
+const cuerpoTabla = document.getElementById('lista-notas'); 
+const varPromedio = document.getElementById('promedio-valor');
+
+
+////------
+///STORAGE-ANGELO
+///------
+
+
+// =====================
+// UI / RENDER (jordy)
 // =====================
 
 function renderizarTabla(notas) {
@@ -9,7 +23,7 @@ function renderizarTabla(notas) {
     notas.forEach((nota, index) => {
         const tr = document.createElement('tr');
 
-        tr.innerHTML = 
+        tr.innerHTML = `
             <td>${nota.curso}</td>
             <td>${nota.nota}</td>
             <td>
@@ -17,7 +31,7 @@ function renderizarTabla(notas) {
                     Eliminar
                 </button>
             </td>
-        ;
+        `;
 
         cuerpoTabla.appendChild(tr);
     });
@@ -36,8 +50,8 @@ function actualizarPromedio(notas) {
 
     varPromedio.textContent = promedio;
 }
-=======
-// las validaciones y mesnajes
+//======================
+// las validaciones y mesnajes(paolo)
 // =====================
 
 function validarCurso(curso) {
@@ -69,15 +83,6 @@ function mostrarMensaje(texto, esError = false) {
     }, 3000);
 }
 
-// =====================
-// la interaccion con el DOM
-// =====================
-const formularioNotas = document.getElementById('form-notas');
-const inputCurso = document.getElementById('curso');
-const inputNota = document.getElementById('nota');
-const cuerpoTabla = document.getElementById('lista-notas'); 
-const varPromedio = document.getElementById('promedio-valor');
-
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof obtenerNotas === 'function' && typeof renderizarTabla === 'function') {
         const notasIniciales = obtenerNotas();
@@ -92,7 +97,9 @@ if (formularioNotas) {
 if (cuerpoTabla) {
     cuerpoTabla.addEventListener('click', manejarClickTabla);
 }
-
+//---
+//eventos/dom - frank
+//--
 function manejarEnvio(evento) {
     evento.preventDefault(); 
 
@@ -142,4 +149,3 @@ function limpiarFormulario() {
     inputCurso.focus();
 }
 
-dev
