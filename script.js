@@ -1,17 +1,37 @@
-// Función para calcular el promedio de las notas
-function calcularPromedio(notas) {
-    if (notas.length === 0) return null; // Si no hay notas, no podemos calcular el promedio
+// =====================
+// UI / RENDER
+// =====================
 
-    // Calcular la suma de todas las notas
-    const suma = notas.reduce((acc, nota) => acc + nota.nota, 0);
+function renderizarTabla(notas) {
+    cuerpoTabla.innerHTML = '';
 
-    // Calcular y devolver el promedio redondeado a 2 decimales
-    return (suma / notas.length).toFixed(2);
+    notas.forEach((nota, index) => {
+        const tr = document.createElement('tr');
+
+        tr.innerHTML = 
+            <td>${nota.curso}</td>
+            <td>${nota.nota}</td>
+            <td>
+                <button class="btn-eliminar" data-indice="${index}">
+                    Eliminar
+                </button>
+            </td>
+        ;
+
+        cuerpoTabla.appendChild(tr);
+    });
+
+    actualizarPromedio(notas);
 }
 
-// Función para actualizar el resumen: total de notas y promedio
-function updateSummary(notas) {
-    totalEl.textContent = notas.length; // Actualizar el total de notas
-    const promedio = calcularPromedio(notas); // Calcular el promedio
-    promedioEl.textContent = promedio === null ? '-' : promedio; // Mostrar el promedio o un guion si no hay notas
+function actualizarPromedio(notas) {
+    if (!notas.length) {
+        varPromedio.textContent = '0';
+        return;
+    }
+
+    const suma = notas.reduce((acc, n) => acc + n.nota, 0);
+    const promedio = (suma / notas.length).toFixed(1);
+
+    varPromedio.textContent = promedio;
 }
