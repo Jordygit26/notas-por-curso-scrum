@@ -31,7 +31,9 @@ function mostrarMensaje(texto, esError = false) {
     }, 3000);
 }
 
-
+// =====================
+// la interaccion con el DOM
+// =====================
 const formularioNotas = document.getElementById('form-notas');
 const inputCurso = document.getElementById('curso');
 const inputNota = document.getElementById('nota');
