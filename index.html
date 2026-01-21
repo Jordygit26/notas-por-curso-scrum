@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opcion 3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Notas por Curso</h1>
+    <main class="container">
+        <section id="seccion-formulario">
+            <div id="area-mensajes">
+                <div id="msg-success" class="alerta alerta-exito oculto">
+                    <strong>¡Excelente!</strong> La nota se guardó correctamente.
+                </div>
+
+                <div id="msg-error" class="alerta alerta-error oculto">
+                    <strong>Error:</strong> Por favor verifica los datos ingresados.
+                </div>
+            </div>
+            <h2>Agregar Nueva Nota</h2>
+            <form id="form-notas">
+                <div class="input-group">
+                    <label for="curso">Nombre del Curso:</label>
+                    <input type="text" id="curso" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="nota">Nota (0-20):</label>
+                    <input type="number" id="nota" min="0" max="20" placeholder="0" required>
+                </div>
+
+                <button type="submit" id="btn-agregar">Guardar Nota</button>
+            </form>
+        </section>
+
+        <section id="seccion-listado">
+            <h2>Listado de Cursos</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Curso</th>
+                        <th>Nota</th>
+                        <th>Acciones</th> </tr>
+                </thead>
+                <tbody id="lista-notas"></tbody>
+            </table>
+
+            <div class="resumen-promedio">
+                <p>Promedio General: <span id="promedio-valor">0.0</span></p>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
