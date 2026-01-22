@@ -148,5 +148,9 @@ Se verificó que:
 ---
 
 ## Integrantes del equipo
-Paolo Lopez - 5
-Jordy Paz 
+- Javier Maldonado -4 (HTML)
+- Manuel Rivera    -5 (CSS)
+- Jordy Paz   -5 (JS)
+- Frank Perez -4 (JS)
+- Paolo Lopez -5 (JS)
+- Angelo Lira -4 (JS)
