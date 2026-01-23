@@ -38,7 +38,7 @@ function eliminarNotaPorIndice(indice) {
 
 
 // =====================
-// UI / RENDER (Jordy)
+// UX/ RENDER (Jordy)
 // =====================
 function renderizarTabla(notas) {
     cuerpoTabla.innerHTML = '';
@@ -167,3 +167,4 @@ function limpiarFormulario() {
     formularioNotas.reset();
     inputCurso.focus();
 }
+
