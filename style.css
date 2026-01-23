@@ -1,0 +1,228 @@
+body {
+    background-color: #eaeff2;
+    font-family: system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 2.5rem;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#seccion-formulario,
+#seccion-listado {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+#seccion-formulario {
+    flex: 1;
+    min-width: 300px;
+}
+
+#seccion-listado {
+    flex: 2;
+    min-width: 400px;
+}
+
+h2 {
+    color: #444;
+    text-align: center;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 15px;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+/* MENSAJE DE VALIDACION (JAVASCRIPT) */
+.alerta {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    border-left: 5px solid;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.alerta-exito {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #28a745;
+}
+
+.alerta-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #dc3545;
+}
+
+.oculto {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* FORMULARIO AGREGAR NOTAS */
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+input:focus {
+    border-color: #007bff;
+}
+
+input:not(:placeholder-shown):invalid {
+    border-color: #dc3545;
+    background-color: #fff8f8;
+}
+
+input:not(:placeholder-shown):valid {
+    border-color: #28a745;
+    background-color: #fafffb;
+}
+
+button#btn-agregar {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+    margin-top: 10px;
+}
+
+button#btn-agregar:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+button#btn-agregar:active {
+    background-color: #1e7e34;
+    transform: translateY(1px);
+}
+
+/* LISTA DE NOTAS */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #007bff;
+    color: white;
+}
+
+th,
+td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+th:nth-child(2),
+td:nth-child(2),
+th:nth-child(3),
+td:nth-child(3) {
+    text-align: center;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+tbody tr:hover {
+    background-color: #e2e6ea;
+}
+
+.resumen-promedio {
+    margin-top: 20px;
+    text-align: right;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+#promedio-valor {
+    color: #007bff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #seccion-formulario,
+    #seccion-listado {
+        width: auto;
+        min-width: 0;
+        flex: none;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    body {
+        padding: 10px;
+    }
+}
